@@ -112,4 +112,4 @@ async def on_message(message):
 
 
 # Replace 'YOUR_BOT_TOKEN' with your bot's actual token
-bot.run('MTIwNTg3ODM0MzUyNjc3Njg0Mw.GFRIgH.fwIcqjyiTYaPfIoRfmpsAQ1ubNiOwVzlX_NEWg')
+bot.run('token')
