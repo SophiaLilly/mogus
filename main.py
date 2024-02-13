@@ -89,10 +89,12 @@ async def on_message(message):
     if message.author != bot.user and message.content.lower() == ('kys' or 'kill yourself'):
         await message.channel.send('no u')
 
-    if message.author != bot.user and ('kill myself' or 'killing myself') in message.content.lower():
+    if message.author != bot.user and ('kill myself' in message.content.lower()
+                                       or 'killing myself' in message.content.lower()):
         await message.channel.send('do it pussy you wont')
-        
-    if message.author != bot.user and ('james' or 'jamey') in message.content.lower():
+    print(message.content.lower())
+    if message.author != bot.user and ('james' in message.content.lower()
+                                       or 'jamey' in message.content.lower()):
         await message.channel.send('jamey is mega cringe')
         await message.channel.send('so true! spit your fax brother')
 
