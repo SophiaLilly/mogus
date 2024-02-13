@@ -91,16 +91,17 @@ async def on_message(message):
 
     if message.author != bot.user and ('kill myself' or 'killing myself') in message.content.lower():
         await message.channel.send('do it pussy you wont')
+        
+    if message.author != bot.user and ('james' or 'jamey') in message.content.lower():
+        await message.channel.send('jamey is mega cringe')
+        await message.channel.send('so true! spit your fax brother')
 
     if message.author != bot.user and '@everyone' in message.content.lower():
-        await message.channel.send('@everyone')
-        await message.channel.send('@everyone')
-        await message.channel.send('@everyone')
-        await message.channel.send('@everyone')
-        await message.channel.send('@everyone')
-
-    if str(message.author) == 'syphyiony' and random.randint(0, 250) == 250:
-        await message.channel.send(f'{message.author.mention} witch pussy')
+        await message.channel.send('@_.elodie._ @sammytheboss111 @syphyiony @turtlesammy @cu_allaidh_ri @lewisalphonsus @silentwolf__ @this.is.stupid @brobot742 @calzoneee @dracorotix @_faba @gl0wwyy @calzone_2 @jamey615 @el_.joshua @malcador4638 @margaretthatcher1794 @marmoor @nico3646 @they_wont_be_found @teeshirtis ')
+        await message.channel.send('@_.elodie._ @sammytheboss111 @syphyiony @turtlesammy @cu_allaidh_ri @lewisalphonsus @silentwolf__ @this.is.stupid @brobot742 @calzoneee @dracorotix @_faba @gl0wwyy @calzone_2 @jamey615 @el_.joshua @malcador4638 @margaretthatcher1794 @marmoor @nico3646 @they_wont_be_found @teeshirtis ')
+        await message.channel.send('@_.elodie._ @sammytheboss111 @syphyiony @turtlesammy @cu_allaidh_ri @lewisalphonsus @silentwolf__ @this.is.stupid @brobot742 @calzoneee @dracorotix @_faba @gl0wwyy @calzone_2 @jamey615 @el_.joshua @malcador4638 @margaretthatcher1794 @marmoor @nico3646 @they_wont_be_found @teeshirtis e')
+        await message.channel.send('@_.elodie._ @sammytheboss111 @syphyiony @turtlesammy @cu_allaidh_ri @lewisalphonsus @silentwolf__ @this.is.stupid @brobot742 @calzoneee @dracorotix @_faba @gl0wwyy @calzone_2 @jamey615 @el_.joshua @malcador4638 @margaretthatcher1794 @marmoor @nico3646 @they_wont_be_found @teeshirtis ')
+        await message.channel.send('@_.elodie._ @sammytheboss111 @syphyiony @turtlesammy @cu_allaidh_ri @lewisalphonsus @silentwolf__ @this.is.stupid @brobot742 @calzoneee @dracorotix @_faba @gl0wwyy @calzone_2 @jamey615 @el_.joshua @malcador4638 @margaretthatcher1794 @marmoor @nico3646 @they_wont_be_found @teeshirtis ')
 
     value = random.randint(0, 500)
     print(value)
