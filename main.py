@@ -1,5 +1,5 @@
 import asyncio
-
+import os
 import discord
 from discord.ext import commands, tasks
 from discord import app_commands
@@ -26,24 +26,27 @@ async def on_ready():
     await bot.get_channel(1204356188683247697).send('https://tenor.com/view/amour-amongus-impostor-imposter-amog-gif-21848583')
     five_minute_mogus.start()
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name="mogus"))
-    await start_hourly_task()
+
+    await start_hourly_task() # all code must go before this
 
 
-    #hourly_ping.start()
+@bot.event
+async def on_message_delete(message):
+    print(f"A message by {message.author.name} was deleted in {message.channel.name}: {message.content}")
+
+    if message.author != bot.user:
+        await message.channel.send(f"nah busta you aint delete this: \n{message.author.name}: \"{message.content}\"")
+    else:
+        await message.channel.send(message.content)
 
 
 @tasks.loop(minutes=5)
 async def five_minute_mogus():
     if str(bot.get_guild(1176130163268927539).name) != str('Mogus Ltd.'):
         await bot.get_guild(1176130163268927539).edit(name='Mogus Ltd.')
-    #try:
-        #await random.choice(bot.get_guild(1176130163268927539).channels).send('mogus')
-    #except AttributeError:
-        #pass
 
 
 async def start_hourly_task():
-    """Wait until the next hour starts before initiating the hourly task."""
     now = datetime.datetime.now()
     seconds_until_next_hour = (60 - now.minute) * 60 - now.second
     await asyncio.sleep(seconds_until_next_hour)
@@ -73,12 +76,15 @@ def regular_mode():
     print()
 
 
-@bot.event
-async def on_message(message):
-    conditions = ['mogus', 'amongus', 'impostor', 'sus', 'among', 'sussy', 'crewmate', 'amogus', 'vented', 'vent',
+conditions = ['mogus', 'amongus', 'impostor', 'sus', 'among', 'sussy', 'crewmate', 'amogus', 'vented', 'vent',
                   'amog', 'imposter', 'mog', 'gus', 'task', 'medbay', 'zka1']
 
-    serious_conditions = ['us']
+serious_conditions = ['us']
+
+
+@bot.event
+async def on_message(message):
+    print(message.content.lower())
 
     if message.author != bot.user \
             and any((x in message.content.lower()) for x in (conditions if regular_mode else conditions and serious_conditions)):
@@ -92,27 +98,19 @@ async def on_message(message):
     if message.author != bot.user and ('kill myself' in message.content.lower()
                                        or 'killing myself' in message.content.lower()):
         await message.channel.send('do it pussy you wont')
-    print(message.content.lower())
+
     if message.author != bot.user and ('james' in message.content.lower()
                                        or 'jamey' in message.content.lower()):
         await message.channel.send('jamey is mega cringe')
         await message.channel.send('so true! spit your fax brother')
 
-    if message.author != bot.user and '@everyone' in message.content.lower():
-        await message.channel.send('@_.elodie._ @sammytheboss111 @syphyiony @turtlesammy @cu_allaidh_ri @lewisalphonsus @silentwolf__ @this.is.stupid @brobot742 @calzoneee @dracorotix @_faba @gl0wwyy @calzone_2 @jamey615 @el_.joshua @malcador4638 @margaretthatcher1794 @marmoor @nico3646 @they_wont_be_found @teeshirtis ')
-        await message.channel.send('@_.elodie._ @sammytheboss111 @syphyiony @turtlesammy @cu_allaidh_ri @lewisalphonsus @silentwolf__ @this.is.stupid @brobot742 @calzoneee @dracorotix @_faba @gl0wwyy @calzone_2 @jamey615 @el_.joshua @malcador4638 @margaretthatcher1794 @marmoor @nico3646 @they_wont_be_found @teeshirtis ')
-        await message.channel.send('@_.elodie._ @sammytheboss111 @syphyiony @turtlesammy @cu_allaidh_ri @lewisalphonsus @silentwolf__ @this.is.stupid @brobot742 @calzoneee @dracorotix @_faba @gl0wwyy @calzone_2 @jamey615 @el_.joshua @malcador4638 @margaretthatcher1794 @marmoor @nico3646 @they_wont_be_found @teeshirtis e')
-        await message.channel.send('@_.elodie._ @sammytheboss111 @syphyiony @turtlesammy @cu_allaidh_ri @lewisalphonsus @silentwolf__ @this.is.stupid @brobot742 @calzoneee @dracorotix @_faba @gl0wwyy @calzone_2 @jamey615 @el_.joshua @malcador4638 @margaretthatcher1794 @marmoor @nico3646 @they_wont_be_found @teeshirtis ')
-        await message.channel.send('@_.elodie._ @sammytheboss111 @syphyiony @turtlesammy @cu_allaidh_ri @lewisalphonsus @silentwolf__ @this.is.stupid @brobot742 @calzoneee @dracorotix @_faba @gl0wwyy @calzone_2 @jamey615 @el_.joshua @malcador4638 @margaretthatcher1794 @marmoor @nico3646 @they_wont_be_found @teeshirtis ')
-
-    value = random.randint(0, 500)
-    print(value)
-
-    if value == 499:
-        await message.channel.send('wow you almost got the super secret easter egg, this doesnt put you any closer tho')
-    if value == 500:
-        await message.channel.send('kys, no actually kys, do it rn, i promise u im not joking fucking do it')
+    #if message.author != bot.user and '@everyone' in message.content.lower():
+        #string = ""
+        #for user in bot.get_guild(1176130163268927539).members:
+            #string += (str(user.mention) + " ")
+        #for i in range(5):
+            #await message.channel.send(string)
 
 
-# Replace 'YOUR_BOT_TOKEN' with your bot's actual token
-bot.run('token')
+with open('token.txt', 'r') as file:
+    bot.run(file.read())
